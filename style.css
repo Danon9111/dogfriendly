@@ -8,9 +8,18 @@
     margin-right: 10%;
 }
 
-.header {}
+.header {
+    display: flex;
+    align-items: stretch;
+}
 
-.navigation {}
+.logo {
+    padding-right: 5px;
+}
+
+.navigation {
+    padding-left: 5px;
+}
 
 .content {}
 
@@ -32,5 +41,11 @@
 .footer {
     border-top: solid black 2px;
     font-size: small;
+}
+
+.footer-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
