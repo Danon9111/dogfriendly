@@ -72,6 +72,16 @@
     align-items: center;
     justify-content: center;
     font-weight: bolder;
+    font-size: xxx-large;
+    font-family: fantasy;
+}
+
+.sub-header-text {    
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-weight: bolder;
+    font-family: fantasy;
 }
 
 .map-container {}
