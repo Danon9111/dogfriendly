@@ -44,12 +44,13 @@
     justify-content: center;
 }
 
-.navigation-link  {
-    text-decoration: none;
+.navigation-item:hover {
+    text-decoration: underline black solid 3px;
 }
 
-.navigation-link:hover {
-    text-decoration: underline;
+.navigation-link  {
+    text-decoration: none;
+    z-index: auto;
 }
 
 .navigation-link:visited {
