@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="./index.js"></script>
+    <script type='text/javascript' src="./js/config.js"></script>
+    <script type='text/javascript' src="./js/index.js"></script>
     <title>Dog Friendly page</title>
 </head>
 <body>
@@ -39,8 +40,9 @@
                 <h2 class="sub-header-text">A friendly space for your dog!</h2>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, in? Placeat minima nulla cupiditate modi quos illum vitae voluptas quisquam velit ipsam perspiciatis suscipit praesentium, eos ea eligendi! Ullam, delectus.</p>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum, in? Placeat minima nulla cupiditate modi quos illum vitae voluptas quisquam velit ipsam perspiciatis suscipit praesentium, eos ea eligendi! Ullam, delectus.</p></div>
-            <div class="map-container" id="map">
+            <div class="map-container">
                 <h2 class="sub-header-text">Find place friendly for you and your dog</h2>
+                <div class="map" id="map"></div>
             </div>
             <div class="outro" id="outro"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, iusto quaerat labore repudiandae incidunt, obcaecati laudantium voluptatum numquam deserunt ipsa architecto molestias autem minima commodi. Odio magnam soluta provident enim.</p>
             <p>Minus possimus nisi, blanditiis, hic natus illo deleniti accusantium quod similique quia eligendi est ducimus veniam doloribus voluptatum saepe excepturi. Adipisci dolores fugit quis provident reprehenderit, sed deserunt esse. Earum!</p>
@@ -52,6 +54,7 @@
             <div class="footer"><p class="footer-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis quod maxime cupiditate illo odio blanditiis quia quo consequatur voluptatibus sapiente quidem harum voluptas quibusdam similique recusandae culpa, ratione architecto. Quidem?</p></div>
         </div>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=API key&callback=initMap&v=weekly" async></script>
+    <script 
+        src="https://maps.googleapis.com/maps/api/js?key=" + mapsApiKey + "&callback=initMap&v=weekly" async></script>
 </body>
 </html>
