@@ -97,12 +97,40 @@
 
 .footer {
     border-top: solid black 2px;
-    font-size: small;
+    display: flex;
+    flex-direction: column;
 }
 
-.footer-text {
+.footer-content {
+    display: flex;
+    align-items: baseline;
+    justify-content: left;
+    flex-direction: row;
+}
+
+.social-media-text {
+    font-size: medium;
+}
+
+.social-media-icons {
+    padding: 5px;
+}
+
+.icons-credits {
+    font-size: xx-small;
+}
+
+.footer-navigation-list-item {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.copyright-text {
+    font-size: small;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
 }
 
