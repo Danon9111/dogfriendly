@@ -54,13 +54,16 @@ body {
     height: 72px;
 }
 
-.navigation-item:hover {
-    text-decoration: underline solid #000 3px;
-}
-
 .navigation-link  {
     text-decoration: none;
     font-size: 20px;
+    border: none;
+    border-bottom: 2px solid white;
+}
+
+.navigation-link:active,
+.navigation-link:hover {
+    border-bottom-color: #000;
 }
 
 .navigation-link:visited {
@@ -127,6 +130,32 @@ body {
     width: 90%;
     margin-left: 10%;
     margin-right: 10%;
+}
+
+.search-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+h2.sub-header-text {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.search-container {
+    height: 72px;
+    width: 100%;
+    display: block;
+    padding-top: 10px;
+}
+
+.search {
+    font-size: 20px;
+    border-radius: 8px 8px 8px 8px;
+    width: 350px;
+    height: 40px;
+    padding-left: 10px;
 }
 
 .map {
