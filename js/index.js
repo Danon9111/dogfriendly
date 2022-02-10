@@ -9,39 +9,41 @@ function callMap(url) {
 }
 
 function initAutocomplete() {
+  const cityCenterCoordinates = { lat: 52.409538, lng: 16.931992 };
+
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 52.409538, lng: 16.931992 },
+    center: cityCenterCoordinates,
     zoom: 15,
     mapTypeId: "roadmap",
+    center: cityCenterCoordinates
   });
 
   const request = {
     query: "Stary Rynek",
     fields: ["name", "geometry"],
-  };
+  };  
 
-  service = new google.maps.places.PlacesService(map);
-  service.findPlaceFromQuery(request, (results, status) => {
-    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-      for (let i = 0; i < results.length; i++) {
-        createMarker(results[i]);
-      }
-
-      map.setCenter(results[0].geometry.location);
-    }
-  });
-}
-
-function createMarker(place) {
-  if (!place.geometry || !place.geometry.location) return;
-
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
+    position: cityCenterCoordinates,
     map,
-    position: place.geometry.location,
+    title: "Hello World!",
   });
+  
+  //hidding default points on map
+  map.setOptions({ styles: styles["hide"] });
 
-  google.maps.event.addListener(marker, "click", () => {
-    infowindow.setContent(place.name || "");
-    infowindow.open(map);
-  });
 }
+
+const styles = {
+  hide: [
+    {
+      featureType: "poi.business",
+      stylers: [{ visibility: "off" }],
+    },
+    {
+      featureType: "transit",
+      elementType: "labels.icon",
+      stylers: [{ visibility: "off" }],
+    },
+  ],
+};
