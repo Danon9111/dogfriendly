@@ -24,7 +24,13 @@ function displayMarkers() {
           "click",
           (function (marker, i) {
             return function () {
-              infowindow.setContent(places.locations[i]["name"]);
+              let markerHTMLStructure =
+                "<div id='location-details-container' style='width: 200px; height: 150px; overflow-x: hidden;'> <div id='location-name' style='font-weight: bold; font-size: 15px; padding: 5px 10px 5px 10px;'>" +
+                places.locations[i]["name"] +
+                "</div> </br> <div id='location-details' style='padding: 5px 10px 5px 10px;'>" +
+                "details" +
+                "</div> </div>";
+              infowindow.setContent(markerHTMLStructure);
               infowindow.open(map, marker);
             };
           })(marker, i)
