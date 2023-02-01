@@ -19,6 +19,21 @@ function displayMarkers() {
           map: map,
         });
 
+        let input = places?.locations[i]["name"];
+        fetch(
+          "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
+            input +
+            "&inputtype=textquery&key=" +
+            mapsApiKey +
+            ""
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (id) {
+            return place_id = id?.candidates[0]["place_id"];
+          });
+
         google.maps.event.addListener(
           marker,
           "click",
@@ -26,7 +41,7 @@ function displayMarkers() {
             return function () {
               let markerHTMLStructure =
                 "<div id='location-details-container' style='width: 200px; height: 150px; overflow-x: hidden;'> <div id='location-name' style='font-weight: bold; font-size: 15px; padding: 5px 10px 5px 10px;'>" +
-                places.locations[i]["name"] +
+                place_id +
                 "</div> </br> <div id='location-details' style='padding: 5px 10px 5px 10px;'>" +
                 "details" +
                 "</div> </div>";
