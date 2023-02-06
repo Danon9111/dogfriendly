@@ -36,7 +36,6 @@ function displayMarkers() {
                 return response.json();
               })
               .then(function (id) {
-                //return (place_id = id?.candidates[0]["place_id"]);
                 place_id = id?.candidates[0]["place_id"];
                 fetch(
                   "https://maps.googleapis.com/maps/api/place/details/json?place_id=" +
