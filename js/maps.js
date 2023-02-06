@@ -19,32 +19,52 @@ function displayMarkers() {
           map: map,
         });
 
-        let input = places?.locations[i]["name"];
-        fetch(
-          "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
-            input +
-            "&inputtype=textquery&key=" +
-            mapsApiKey +
-            ""
-        )
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (id) {
-            return place_id = id?.candidates[0]["place_id"];
-          });
-
         google.maps.event.addListener(
           marker,
           "click",
           (function (marker, i) {
+            let place_id, placeName, address, hours;
+            let input = places?.locations[i]["name"];
+            fetch(
+              "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
+                input +
+                "&inputtype=textquery&key=" +
+                mapsApiKey +
+                ""
+            )
+              .then(function (response) {
+                return response.json();
+              })
+              .then(function (id) {
+                //return (place_id = id?.candidates[0]["place_id"]);
+                place_id = id?.candidates[0]["place_id"];
+                fetch(
+                  "https://maps.googleapis.com/maps/api/place/details/json?place_id=" +
+                    place_id +
+                    "&key=" +
+                    mapsApiKey +
+                    ""
+                )
+                  .then(function (placeResponse) {
+                    return placeResponse.json();
+                  })
+                  .then(function (placeDetails) {
+                    placeName = placeDetails?.result["name"];
+                    address = placeDetails?.result["formatted_address"];
+                    hours = placeDetails?.result["opening_hours"]?.weekday_text;
+                    return placeName, address, hours;
+                  });
+              });
+
             return function () {
               let markerHTMLStructure =
                 "<div id='location-details-container' style='width: 200px; height: 150px; overflow-x: hidden;'> <div id='location-name' style='font-weight: bold; font-size: 15px; padding: 5px 10px 5px 10px;'>" +
-                place_id +
+                placeName +
                 "</div> </br> <div id='location-details' style='padding: 5px 10px 5px 10px;'>" +
-                "details" +
-                "</div> </div>";
+                address +
+                "</div>" +
+                hours +
+                "</div>";
               infowindow.setContent(markerHTMLStructure);
               infowindow.open(map, marker);
             };
