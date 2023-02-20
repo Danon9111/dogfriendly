@@ -51,19 +51,19 @@ function displayMarkers() {
                     placeName = placeDetails?.result["name"];
                     address = placeDetails?.result["formatted_address"];
                     hours = placeDetails?.result["opening_hours"]?.weekday_text;
-                    hoursClean = hours.toString().split(',').join('</br>');
                     return placeName, address, hours;
                   });
               });
 
             return function () {
+              let hoursClean = hours.toString().split(',').join('</br>');
               let markerHTMLStructure =
                 "<div id='location-details-container' style='all: unset; display: flex; flex-direction: column; overflow-x: hidden; font-family: system-ui;'> <div id='location-name' style='order: 1; font-size: 20px; font-weight: bold; padding: 0px 10px 5px 10px;'>" +
                 placeName +
                 "</div> </br> <div id='location-details' style='order: 2; font-size: 15px; font-weight: bolder; padding: 5px 10px 5px 10px;'>" +
                 address +
                 "</div> </br> <div id='location-hours' style='order: 3; font-size: 13px; font-weight: normal; padding: 5px 10px 5px 10px;'>" +
-                hours +
+                hoursClean +
                 "</div> </div>";
               infowindow.setContent(markerHTMLStructure);
               infowindow.open(map, marker);
