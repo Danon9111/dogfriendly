@@ -56,14 +56,15 @@ function displayMarkers() {
               });
 
             return function () {
+              let hoursClean = hours.toString().split(',').join('</br>');
               let markerHTMLStructure =
-                "<div id='location-details-container' style='width: 200px; height: 150px; overflow-x: hidden;'> <div id='location-name' style='font-weight: bold; font-size: 15px; padding: 5px 10px 5px 10px;'>" +
+                "<div id='location-details-container' style='all: unset; display: flex; flex-direction: column; overflow-x: hidden; font-family: system-ui; flex-wrap: nowrap; align-content: flex-start; justify-content: flex-start; align-items: flex-start;'> <div id='location-name' style='order: 0; font-size: 20px; font-weight: bold; padding: 0px 10px 5px 10px;'>" +
                 placeName +
-                "</div> </br> <div id='location-details' style='padding: 5px 10px 5px 10px;'>" +
+                "</div> <div id='location-details' style='order: 1; font-size: 15px; font-weight: bolder; padding: 5px 10px 5px 10px;'>" +
                 address +
-                "</div>" +
-                hours +
-                "</div>";
+                "</div> <div id='location-hours' style='order: 2; font-size: 13px; font-weight: normal; padding: 5px 10px 5px 10px;'>" +
+                hoursClean +
+                "</div> </div>";
               infowindow.setContent(markerHTMLStructure);
               infowindow.open(map, marker);
             };
