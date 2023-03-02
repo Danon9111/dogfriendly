@@ -56,7 +56,7 @@ function displayMarkers() {
               });
 
             return function () {
-              let hoursClean = hours.toString().split(',').join('</br>');
+              let hoursClean = hours.toString().split(",").join("</br>");
               let markerHTMLStructure =
                 "<div id='location-details-container' style='all: unset; display: flex; flex-direction: column; overflow-x: hidden; font-family: system-ui; flex-wrap: nowrap; align-content: flex-start; justify-content: flex-start; align-items: flex-start;'> <div id='location-name' style='order: 0; font-size: 20px; font-weight: bold; padding: 0px 10px 5px 10px;'>" +
                 placeName +
