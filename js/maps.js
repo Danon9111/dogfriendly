@@ -86,9 +86,9 @@ function initMap() {
   displayMarkers();
 }
 
-function callMap(url) {
-  let script = document.createElement("script");
+function insertApi(url) {
+  let script =document.createElement("script");
   script.src = url;
-  script.async = true;
+  script.async =true;
   document.body.appendChild(script);
 }
