@@ -1,6 +1,6 @@
 const mapsApiKey = config.MAPS_API_KEY;
 const poznanCenter = { lat: 52.409538, lng: 16.931992 };
-let marker, i, map;
+let marker, i, map, autocomplete;
 
 function displayMarkers() {
   fetch("./assets/locations.json") //read file from a location
@@ -84,11 +84,35 @@ function initMap() {
   });
 
   displayMarkers();
+  initAutocomplete();
+}
+
+function initAutocomplete() {
+  autocomplete = new google.maps.places.Autocomplete(
+    document.getElementById("search-input"),
+    {
+      componentRestrictions: { country: ["PL"] },
+      fields: ["geometry", "name"],
+    }
+  );
+
+  autocomplete.addListener("place_changed", setUserMarker());
+}
+
+function setUserMarker() {
+  let userMarker = autocomplete.getPlace();
+  console.log(userMarker);
+  if (!userMarker.geometry) {
+    document.getElementById("search-input").placeholder =
+      "Wprowadź szukaną lokalizację jeszcze raz";
+  } else {
+    console.log((poznanCenter = userMarker.geometry));
+  }
 }
 
 function insertApi(url) {
-  let script =document.createElement("script");
+  let script = document.createElement("script");
   script.src = url;
-  script.async =true;
+  script.async = true;
   document.body.appendChild(script);
 }
