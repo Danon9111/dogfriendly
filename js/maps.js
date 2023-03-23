@@ -110,6 +110,7 @@ function initAutocomplete() {
         ),
         map: map,
       });
+      map.setCenter({ lat: poznanCenter.lat, lng: poznanCenter.lng });
     }
   });
 }
