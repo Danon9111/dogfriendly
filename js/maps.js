@@ -1,6 +1,6 @@
 const mapsApiKey = config.MAPS_API_KEY;
-const poznanCenter = { lat: 52.409538, lng: 16.931992 };
-let marker, i, map;
+let poznanCenter = { lat: 52.409538, lng: 16.931992 };
+let marker, i, map, autocomplete;
 
 function displayMarkers() {
   fetch("./assets/locations.json") //read file from a location
@@ -84,9 +84,38 @@ function initMap() {
   });
 
   displayMarkers();
+  initAutocomplete();
 }
 
-function callMap(url) {
+function initAutocomplete() {
+  autocomplete = new google.maps.places.Autocomplete(
+    document.getElementById("search-input"),
+    {
+      componentRestrictions: { country: ["PL"] },
+      fields: ["geometry", "name"],
+    }
+  );
+
+  google.maps.event.addListener(autocomplete, "place_changed", function () {
+    let userMarker = autocomplete.getPlace();
+
+    if (!userMarker.geometry) {
+      document.getElementById("search-input").placeholder =
+        "Wprowadź szukaną lokalizację jeszcze raz";
+    } else {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(
+          (poznanCenter.lat = userMarker.geometry.location.lat()),
+          (poznanCenter.lng = userMarker.geometry.location.lng())
+        ),
+        map: map,
+      });
+      map.setCenter({ lat: poznanCenter.lat, lng: poznanCenter.lng });
+    }
+  });
+}
+
+function insertApi(url) {
   let script = document.createElement("script");
   script.src = url;
   script.async = true;
